@@ -67,3 +67,49 @@ void Evaluation::ajouterEvaluation(){
 
     input.close();
 }
+
+void Evaluation::supprimerEvaluation(string  ncni)
+{
+   ifstream input("Fichiers/evaluation.txt",ios::in);
+   ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+    Evaluation e;
+    Design dg;
+    bool trouver=false;
+
+   if(input && output)
+   {
+       while(input >> e)
+       {
+            if(e.GetNCNI() != ncni)
+            {
+                output << e;
+            }else
+            {
+                trouver =true;
+            }
+
+       }
+
+          input.close();
+          output.close();
+   }
+   else
+   {
+       dg.Message_Erreur_flux();
+   }
+
+/** Procedure d'echange des 2 fichiers   **/
+   if(trouver)
+   {
+          ifstream input2("Fichiers/tmp2.txt");
+          ofstream output2("Fichiers/evaluation.txt",ios::out|ios::trunc);
+          while(input2 >> e)
+          {
+              output2 << e;
+          }
+
+             input2.close();
+             output2.close();
+   }
+
+}

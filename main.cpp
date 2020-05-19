@@ -12,10 +12,11 @@ int main()
  Candidat cdt;
  Matiere m;
  Evaluation e;
- e.ajouterEvaluation();
-// cdt.ajouterCandidat();
-
+ //e.ajouterEvaluation();
+//cdt.ajouterCandidat();
+//cdt.supprimer_Candidat("E124");
 //m.ajouterMatiere();
+m.supprimerMatiere("M278");
 
     return 0;
 }

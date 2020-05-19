@@ -63,3 +63,51 @@ void Matiere::ajouterMatiere()
          dg.Message_Erreur_flux();
     }
 }
+
+void Matiere::supprimerMatiere(string code)
+{
+ ifstream input("Fichiers/matiere.txt",ios::in);
+  ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+  Design dg;
+  Matiere m;
+  Evaluation e;
+  bool presence =false;
+
+  /** ici on recherche si le numero de cni existe dans le fichier **/
+
+  if(input && output){
+
+    while( input >> m )
+    {
+        if(m.Getcode() != code)
+        {
+            output << m;
+        }else
+        {
+            presence = true;
+            e.supprimerEvaluation(code);
+        }
+    }
+    input.close();
+    output.close();
+  }
+  else{
+    dg.Message_Erreur_flux();
+  }
+   /** ici on echange les deux fichiers **/
+
+   if(presence)
+   {
+       ifstream input2("Fichiers/tmp2.txt",ios::in);
+       ofstream output2("Fichiers/matiere.txt",ios::out|ios::trunc);
+
+       while(input2 >> m )
+       {
+           output2<< m;
+       }
+       input2.close();
+       output2.close();
+   }
+
+}
+

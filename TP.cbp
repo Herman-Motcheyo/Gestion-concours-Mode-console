@@ -35,6 +35,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Fichiers/candidat.txt" />
+		<Unit filename="Fichiers/evaluation.txt" />
+		<Unit filename="Fichiers/matiere.txt" />
+		<Unit filename="Fichiers/tmp1.txt" />
+		<Unit filename="Fichiers/tmp2.txt" />
 		<Unit filename="include/Candidat.h" />
 		<Unit filename="include/Design.h" />
 		<Unit filename="include/Evaluation.h" />

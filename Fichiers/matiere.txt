@@ -1,2 +1,15 @@
-f6 ;info ;5
-22t ;math ;5
+M566 ;science ; 5
+M456 ;anglais ; 3
+M541 ;allemand ; 4
+M974 ;informatique ; 5
+M527 ;sport ; 3
+M850 ;français ; 3
+M486 ;technologie ; 4
+M274 ;morale ; 5
+M678 ;économie sociale ; 4
+M812 ;histoire ; 3
+M452 ;éducation civique ; 5
+M412 ;chinois ; 4
+M243 ;mathématique ; 3
+M754 ;géographie ; 5 
+M278 ;espagnol ; 3
