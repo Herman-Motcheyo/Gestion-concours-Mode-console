@@ -10,8 +10,12 @@ using namespace std;
 int main()
 {
  Candidat cdt;
+ Matiere m;
+ Evaluation e;
+ e.ajouterEvaluation();
 // cdt.ajouterCandidat();
-Matiere m;
-m.ajouterMatiere();
+
+//m.ajouterMatiere();
+
     return 0;
 }
