@@ -1,0 +1,8 @@
+12 ;tchengehon ;herman ; 21
+1 ;ptpt ;tptp ; 0
+ff ;54 ;54 ; 12
+1 ;toto ;tptp ; 78
+2 ;otot ;jyjyj ; 15
+ffff ;toto ;tata ; -5
+121 ;rien ;moi ; 12
+18t ;herman ;motcheyo ; 21
