@@ -26,8 +26,8 @@ istream & operator >>(istream &flux,Matiere &m)
 
 ostream & operator <<(ostream &flux,Matiere &m)
         {
-            char point_virgule = ';' ;
-             flux << m.Getcode() << point_virgule << m.Getlibelle()<< point_virgule << m.Getcoefficient();
+            string point_virgule = " ;" ;
+             flux << m.Getcode() << point_virgule << m.Getlibelle()<< point_virgule << m.Getcoefficient()<<"\n";
            return flux;
        }
 
@@ -64,50 +64,133 @@ void Matiere::ajouterMatiere()
     }
 }
 
-void Matiere::supprimerMatiere(string code)
-{
- ifstream input("Fichiers/matiere.txt",ios::in);
-  ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
-  Design dg;
-  Matiere m;
-  Evaluation e;
-  bool presence =false;
 
-  /** ici on recherche si le numero de cni existe dans le fichier **/
-
-  if(input && output){
-
-    while( input >> m )
-    {
-        if(m.Getcode() != code)
-        {
-            output << m;
-        }else
-        {
-            presence = true;
-            e.supprimerEvaluation(code);
+/** cette methode permet de supprimer une matiere **/
+ void Matiere::supprimerMatiere(string CODE){
+                Matiere mati;
+                Evaluation e;
+                ifstream input("Fichiers/matiere.txt",ios::in);
+                ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+                bool trouve=false;
+                //on recupere le ncni s'il existe
+                while( input >> mati ){
+                    if(mati.Getcode()==CODE){
+                        trouve=true;
+                       e.supprimerEvaluationMatiere(mati.Getcode());
+                    }else{
+                        output << mati;
+                    }
+                }
+                input.close();
+                output.close();
+                if(trouve){
+                    //on effectue la recopie
+                    ifstream input("Fichiers/tmp1.txt",ios::in);
+                    ofstream output("Fichiers/matiere.txt",ios::out|ios::trunc);
+                    while( input >> mati ){
+                        output << mati;
+                    }
+                    input.close();
+                    output.close();
+                }
         }
-    }
-    input.close();
-    output.close();
-  }
-  else{
-    dg.Message_Erreur_flux();
-  }
-   /** ici on echange les deux fichiers **/
 
-   if(presence)
-   {
-       ifstream input2("Fichiers/tmp2.txt",ios::in);
-       ofstream output2("Fichiers/matiere.txt",ios::out|ios::trunc);
 
-       while(input2 >> m )
+        /** cette methode permet de modifier une matiere**/
+void Matiere::modifierMatiere()
+{
+    ifstream input("Fichiers/matiere.txt",ios::in);
+    ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+    Matiere m;
+    Evaluation e;
+    Design dg;
+    Utilitaire utile;
+    string ancien_code,new_code,libelle;
+    int coefficient;
+    int  choix=0;
+
+    bool trouver =false;
+
+    dg.Entrer('m');
+    cin >>ancien_code;
+
+    if(input && output)
+    {
+       if(utile.Existe_Matiere(ancien_code))
        {
-           output2<< m;
+
+               dg.MenuModifier('m');
+                cin >>choix;
+
+           while(input >> m )
+           {
+               if(m.Getcode()== ancien_code)
+               {
+
+                 trouver =true;
+                 if(choix== 1)
+                 {
+                     dg.MenuModifier("matiere",'c');
+                      cin >>new_code;
+                      m.Setcode(new_code);
+                      e.modifierEvaluationMatiere(ancien_code,new_code);
+                 }
+                 else if(choix ==2)
+                 {
+                     dg.MenuModifier("matiere",'l');
+                      cin >>  libelle;
+                      m.Setlibelle(libelle);
+                 }
+                else if(choix ==3)
+                 {
+                      do{
+                           dg.MenuModifier("matiere",'f');
+                           cin >>  coefficient;
+                           m.Setcoefficient(coefficient);
+                      }while(coefficient <= 0 );
+                 }
+
+                    else{
+                    trouver= false;
+                   dg.MenuModifier("matiere",'x');
+                 }
+              }
+
+                output << m;/** on ecrit dans le fichier temporelle **/
+
+               }
+           }
+
+
+       else
+       {
+           dg.Message_Erreur('d');
        }
-       input2.close();
-       output2.close();
-   }
+                    input.close();
+                    output.close();
+       }
+    else{
+      dg.Message_Erreur_flux();
+    }
+
+      /**  on permute le contenu des 2 fichiers **/
+    if(trouver){
+          ifstream input2("Fichiers/tmp1.txt",ios::in);
+          ofstream output2("Fichiers/matiere.txt",ios::out|ios::trunc);
+
+          if(input2 && output2)
+          {
+           while( input2 >> m)
+           {
+             output2 << m;
+            }
+                input2.close();
+                output2.close();
+            dg.Message_Validation('m');
+          }
+          else{
+             dg.Message_Erreur_flux();
+          }
+    }
 
 }
-
