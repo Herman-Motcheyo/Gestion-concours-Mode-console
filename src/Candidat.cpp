@@ -150,6 +150,7 @@ void Candidat::modifierCandidat()
     ifstream input("Fichiers/candidat.txt",ios::in);
     ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
     Candidat cand;
+    Evaluation e;
     Design dg;
     Utilitaire utile;
     string ancien_nci,new_cni,nom,prenom;
@@ -180,6 +181,7 @@ void Candidat::modifierCandidat()
                      dg.MenuModifier("candidat",'c');
                       cin >>new_cni;
                       cand.SetNCNI(new_cni);
+                      e.modifierEvaluationCandidat(ancien_nci,new_cni);
                  }
                  else if(choix ==2)
                  {
