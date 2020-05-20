@@ -71,7 +71,7 @@ void Evaluation::ajouterEvaluation(){
 
 
 
-
+/** cette methode permet de supprrimer une evaluation à partir du numero de cni du candidat **/
 void Evaluation::supprimerEvaluationCandidat(string NCNI){
                 ifstream input("Fichiers/evaluation.txt",ios::in);
                 ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
@@ -98,6 +98,7 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
                 }
         }
 
+      /** cette methode permet de supprrimer une evaluation à partir du code la  matiere **/
         void Evaluation::supprimerEvaluationMatiere(string code){
                 ifstream input("Fichiers/evaluation.txt",ios::in);
                 ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
@@ -123,6 +124,9 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
                     output.close();
                 }
         }
+
+        /** cette methode permet de modifier la cni d'un candidat ayant passé une evaluation **/
+
  void Evaluation::modifierEvaluationCandidat( string ancien_nci,string ncni){
             ifstream input("Fichiers/evaluation.txt",ios::in);
             ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
@@ -162,7 +166,52 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
                    while(input >> e ){
                       output << e;
                    }
-                     dg.Message_Validation('m');
+                   //  dg.Message_Validation('m');
+                  input.close();
+                  output.close();
+               }
+               else{
+               dg.Message_Erreur_flux();
+               }
+
+          }
+ }
+
+        /** cette methode permet de modifier lE CODE d'une matiere pour un Candidat ayant passé une evaluation **/
+
+ void Evaluation::modifierEvaluationMatiere( string ancien_code,string ncode){
+            ifstream input("Fichiers/evaluation.txt",ios::in);
+            ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+            Evaluation e;
+            Design dg;
+            bool trouver =false;
+
+            if(input && output){
+                while(input  >> e)
+                {
+                if(e.Getcode() == ancien_code){
+                     trouver =true;
+                      e.Setcode(ncode);
+                }
+                   output  << e;
+                }
+                 output.close();
+                 input.close();
+            }
+            else{
+             dg.Message_Erreur_flux();
+            }
+
+            if(trouver){
+
+                ifstream input("Fichiers/tmp2.txt",ios::in);
+                ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+
+               if(input && output){
+                   while(input >> e ){
+                      output << e;
+                   }
+                   //  dg.Message_Validation('m');
                   input.close();
                   output.close();
                }
