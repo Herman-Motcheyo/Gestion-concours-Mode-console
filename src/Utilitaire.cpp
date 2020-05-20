@@ -15,7 +15,7 @@ Utilitaire::~Utilitaire()
 {
 
 }
-/* cette methode verifie si un candidat existe deja */
+         /** cette methode verifie si un candidat existe deja **/
 bool Utilitaire::Existe_Candidat(string ncni)
 {
     ifstream output("Fichiers/candidat.txt",ios::in);
@@ -35,7 +35,7 @@ bool Utilitaire::Existe_Candidat(string ncni)
     }
 }
 
-/* cette methode verifit si une matiere existe deja dans le fichier*/
+/** cette methode verifit si une matiere existe deja dans le fichier **/
 
 bool Utilitaire::Existe_Matiere( string newcode)
 {    Design dg;
@@ -54,3 +54,18 @@ bool Utilitaire::Existe_Matiere( string newcode)
         dg.Message_Erreur_flux();
     }
 }
+
+/** cette methode permet de recuperer les coefficient d' une matiere à partir du code renseigné **/
+
+int Utilitaire::coef_Matiere(string code)
+{  Matiere m;
+   ifstream input("Fichiers/matiere.txt",ios::in);
+
+   while(input >> m){
+       if(m.Getcode() == code ){
+         return m.Getcoefficient(); /** on retourne le coefficient chercher**/
+       }
+   }
+   return 0;
+}
+
