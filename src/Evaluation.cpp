@@ -68,48 +68,107 @@ void Evaluation::ajouterEvaluation(){
     input.close();
 }
 
-void Evaluation::supprimerEvaluation(string  ncni)
-{
-   ifstream input("Fichiers/evaluation.txt",ios::in);
-   ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
-    Evaluation e;
-    Design dg;
-    bool trouver=false;
 
-   if(input && output)
-   {
-       while(input >> e)
-       {
-            if(e.GetNCNI() != ncni)
-            {
-                output << e;
-            }else
-            {
-                trouver =true;
+
+
+
+void Evaluation::supprimerEvaluationCandidat(string NCNI){
+                ifstream input("Fichiers/evaluation.txt",ios::in);
+                ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+                Evaluation eval;
+                bool trouve=false;
+                while( input >> eval ){
+                    if(eval.GetNCNI()==NCNI){
+                        trouve=true;
+                    }else{
+                        output << eval;
+                    }
+                }
+                input.close();
+                output.close();
+                //on effectue la recopie s'il ya existence de l'enregistrement
+                if(trouve){
+                    ifstream input("Fichiers/tmp2.txt",ios::in);
+                    ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                    while( input >> eval ){
+                        output << eval;
+                    }
+                    input.close();
+                    output.close();
+                }
+        }
+
+        void Evaluation::supprimerEvaluationMatiere(string code){
+                ifstream input("Fichiers/evaluation.txt",ios::in);
+                ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+                Evaluation eval;
+                bool trouve=false;
+                while( input >> eval ){
+                    if(eval.Getcode()==code){
+                        trouve=true;
+                    }else{
+                        output << eval;
+                    }
+                }
+                input.close();
+                output.close();
+                //on effectue la recopie s'il ya existence de l'enregistrement
+                if(trouve){
+                    ifstream input("Fichiers/tmp2.txt",ios::in);
+                    ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                    while( input >> eval ){
+                        output << eval;
+                    }
+                    input.close();
+                    output.close();
+                }
+        }
+ void Evaluation::modifierEvaluationCandidat( string ancien_nci,string ncni){
+            ifstream input("Fichiers/evaluation.txt",ios::in);
+            ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+            Evaluation e;
+            Design dg;
+            bool trouver =false;
+
+            if(input && output){
+                while(input  >> e)
+                {
+                if(e.GetNCNI() == ancien_nci){
+                     trouver =true;
+                      e.SetNCNI(ncni);
+                }
+                   output  << e;
+                  /* if(e.GetNCNI() != ancien_nci ){
+                        output  << e;
+                   }
+                   else{
+                      trouver =true;
+                      e.SetNCNI(ncni);
+                   }*/
+                }
+                 output.close();
+                 input.close();
+            }
+            else{
+             dg.Message_Erreur_flux();
             }
 
-       }
+            if(trouver){
 
-          input.close();
-          output.close();
-   }
-   else
-   {
-       dg.Message_Erreur_flux();
-   }
+                ifstream input("Fichiers/tmp2.txt",ios::in);
+                ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
 
-/** Procedure d'echange des 2 fichiers   **/
-   if(trouver)
-   {
-          ifstream input2("Fichiers/tmp2.txt");
-          ofstream output2("Fichiers/evaluation.txt",ios::out|ios::trunc);
-          while(input2 >> e)
-          {
-              output2 << e;
+               if(input && output){
+                   while(input >> e ){
+                      output << e;
+                   }
+                     dg.Message_Validation('m');
+                  input.close();
+                  output.close();
+               }
+               else{
+               dg.Message_Erreur_flux();
+               }
+
           }
-
-             input2.close();
-             output2.close();
-   }
-
-}
+ }
