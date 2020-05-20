@@ -69,3 +69,13 @@ int Utilitaire::coef_Matiere(string code)
    return 0;
 }
 
+int Utilitaire::nombre_elem_Fichier(char * fichier){
+
+ string line;
+ int n=0;
+ ifstream input(fichier,ios::in);
+    while(getline(input,line)){
+      n++;
+    }
+ return n;
+}
