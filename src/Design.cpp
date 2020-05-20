@@ -112,6 +112,9 @@ void Design::MenuModifier(string entite ,char mode)
              Entrer();
              cout << " Le Coefficient \t" ;
         }
+        else if(mode == 'x'){
+          cout << " ::::::   Svp veuillez renseigner un numero correct  ::::: \n";
+        }
 
     }
     else if(entite == "evaluation"){
@@ -134,15 +137,15 @@ void Design::MenuModifier(char mode){
                 cout <<"....................................................................."<<endl;
                 cout <<" Vous pouvez modifier :"<<endl;
                 cout <<" ----------------------"<<endl;
-                cout <<"  -> Le numero de CNI"<<endl;
-                cout <<"  -> L'age"<<endl;
-                cout <<"  -> Le nom"<<endl;
-                cout <<"  -> Le prenom"<<endl;
+                cout <<"  :::::: Le numero de CNI ::::::"<<endl;
+                cout <<"  :::::: Le nom  ::::::" <<endl;
+                cout <<"   :::::: Le prenom :::::: "<<endl;
+                cout <<"  :::::: L'age ::::::"<<endl;
                   Entrer();
-                cout <<" 1 pour le numero ; ";
-                cout <<"2 pour l'age ; ";
-                cout <<"3 pour le nom ; ";
-                cout <<"4 pour le prenom "<<endl;
+                cout <<" 1 pour la  cni ; ";
+                cout <<"2 pour le nom ; ";
+                cout <<"3 pour le prenom ; ";
+                cout <<"4 pour l' age "<<endl;
                 cout <<"....................................................................."<<endl;
 
             }else if(mode=='m'){ // m pour matiere
@@ -190,5 +193,7 @@ void Design::Message_Validation(char rep)
 {
   if(rep=='c'){
       cout << " ***** Enregistrement Reussi avec Sucess !!!! ***** "<<endl;
+  }else if (rep == 'm'){
+     cout << " ***** Modification Reussi avec Sucess !!!! ***** "<<endl;
   }
 }
