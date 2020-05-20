@@ -17,18 +17,20 @@ class Evaluation
         virtual ~Evaluation();
 
         void ajouterEvaluation();
-        void supprimerEvaluation( int);
-        void supprimerEvaluation( string);
+        void supprimerEvaluationMatiere( string);
+        void modifierEvaluationMatiere( string,string );
+        void supprimerEvaluationCandidat( string);
+        void modifierEvaluationCandidat( string,string);
 
          friend istream & operator >> (istream & flux, Evaluation &eval);
          friend ostream & operator << (ostream &flux, Evaluation &eval);
 
-        string GetNCNI() { return NCNI; }
-        void SetNCNI(string val) { NCNI = val; }
-        double Getnote() { return note; }
-        void Setnote(double val) { note = val; }
-        string Getcode() { return code; }
-        void Setcode(string val) { code = val; }
+           string GetNCNI() { return NCNI; }
+           void SetNCNI(string val) { NCNI = val; }
+           double Getnote() { return note; }
+           void Setnote(double val) { note = val; }
+           string Getcode() { return code; }
+           void Setcode(string val) { code = val; }
 
     protected:
 

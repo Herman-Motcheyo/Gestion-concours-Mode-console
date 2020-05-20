@@ -19,6 +19,7 @@ class Matiere
 
         void ajouterMatiere();
         void supprimerMatiere( string );
+        void modifierMatiere();
 
         friend istream & operator >>(istream &flux,Matiere &m);
         friend ostream & operator << (ostream &flux, Matiere &m);

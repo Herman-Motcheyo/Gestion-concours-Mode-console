@@ -12,6 +12,7 @@ class Utilitaire
         virtual ~Utilitaire();
         bool Existe_Candidat(string);
         bool Existe_Matiere( string);
+        int coef_Matiere(string);
 
 
     private:
