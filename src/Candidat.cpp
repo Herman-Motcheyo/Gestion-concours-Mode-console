@@ -90,108 +90,10 @@ void Candidat::ajouterCandidat()
               contenu pr�cedent est supprimer  et remplac�
  **/
 
-/*void Candidat::supprimer_Candidat(string ncni)
-{
-  ifstream input("Fichiers/candidat.txt",ios::in);
-  ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
-  Design dg;
-  Candidat c;
-  Evaluation e;
-  bool presence;
- ici on recherche si le numero de cni existe dans le fichier
-
- if(input && output){
-
-    while( input >> c )
-    {
-        if(c.GetNCNI() != ncni)
-        {
-            output << c;
-        }else
-        {
-            presence = true;
-            e.supprimerEvaluation(ncni);
-        }
-    }
-    input.close();
-    output.close();
-  }
-  else{
-    dg.Message_Erreur_flux();
-  }
-   /** ici on echange les deux fichiers **/
-
-   /*if(presence)
-   {
-       ifstream input2("Fichiers/tmp1.txt",ios::in);
-       ofstream output2("Fichiers/candidat.txt",ios::out|ios::trunc);
-       string line,cni,nom,prenom;
-       int age;
-       char v;
-
-       while(input2 >> c )
-       {
-          output2  <<c.NCNI  <<" ;" <<c.NOM <<" ;"  <<c.PRENOM <<" ; "  << c.AGE <<endl;
-       }
-
-       do
-       {
-         input2 >> cni;
-
-          input2 >> v;
-           input2 >> v;
-
-
-         input2 >> nom;
-           input2 >> v;
-            input2 >> v;
-
-
-         input2 >> prenom;
-         input2 >> v;
-          input2 >> v;
-           input2 >> v;
-
-        input2 >> prenom;
-
-          output2  <<cni <<" ;" <<nom <<" ;"  <<prenom <<" ; "  << age <<"\n";
-
-
-       }while(getline(input2,line));
-       while(getline(input2,line)){
-                input2 >> cni;
-
-          input2 >> v;
-           input2 >> v;
-
-
-         input2 >> nom;
-           input2 >> v;
-            input2 >> v;
-
-
-         input2 >> prenom;
-         input2 >> v;
-          input2 >> v;
-           input2 >> v;
-
-        input2 >> prenom;
-
-          output2  <<cni <<" ;" <<nom <<" ;"  <<prenom <<" ; "  << age <<"\n \n";
-       }
-
-       input2.close();
-       output2.close();
-   }
-
-}*/
  void Candidat::supprimer_Candidat(string NCNI){
                 Candidat cand;
                 Evaluation e;
 
-                       string line,cni,nom,prenom;
-       int age;
-       char v;
                 ifstream input("Fichiers/candidat.txt",ios::in);
                 ofstream output("tmp1.txt",ios::out|ios::trunc);
                 bool trouve=false;
@@ -201,7 +103,7 @@ void Candidat::ajouterCandidat()
                         output << cand;
                     }else{
                         trouve=true;
-                        e.supprimerEvaluation(cand.GetNCNI());
+                        e.supprimerEvaluationCandidat(cand.GetNCNI());
                     }
                 }
                 input.close();
@@ -240,3 +142,117 @@ void Candidat::ajouterCandidat()
                 }
 
         }
+
+        /** cette methode permet de modifier un candidat **/
+
+void Candidat::modifierCandidat()
+{
+    ifstream input("Fichiers/candidat.txt",ios::in);
+    ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+    Candidat cand;
+    Design dg;
+    Utilitaire utile;
+    string ancien_nci,new_cni,nom,prenom;
+    int age;
+    int  choix=0;
+
+    bool trouver =false;
+
+    dg.Entrer('c');
+    cin >>ancien_nci;
+
+    if(input && output)
+    {
+       if(utile.Existe_Candidat(ancien_nci))
+       {
+
+               dg.MenuModifier('c');
+                cin >>choix;
+
+           while(input >> cand )
+           {
+               if(cand.GetNCNI()== ancien_nci)
+               {
+
+                 trouver =true;
+                 if(choix== 1)
+                 {
+                     dg.MenuModifier("candidat",'c');
+                      cin >>new_cni;
+                      cand.SetNCNI(new_cni);
+                 }
+                 else if(choix ==2)
+                 {
+                     dg.MenuModifier("candidat",'n');
+                      cin >>  nom;
+                      cand.SetNOM(nom);
+                 }
+                else if(choix ==3)
+                 {
+                     dg.MenuModifier("candidat",'p');
+                      cin >>  prenom;
+                      cand.SetPRENOM(prenom);
+                 }
+                else if(choix ==4)
+                 {
+
+
+                      do{
+                      dg.MenuModifier("candidat",'a');
+                      cin >>  age;
+                      cand.SetAGE(age);
+
+                      }while(age <10 );
+
+
+                 }
+                    else{
+                    trouver= false;
+                   dg.MenuModifier("candidat",'x');
+                 }
+              }
+
+                output << cand;/** on ecrit dans le fichier temporelle **/
+
+               }
+           }
+
+
+       else
+       {
+           dg.Message_Erreur('d');
+       }
+                    input.close();
+                    output.close();
+       }
+    else{
+      dg.Message_Erreur_flux();
+    }
+
+      /**  on permute le contenu des 2 fichiers **/
+    if(trouver){
+          ifstream input2("Fichiers/tmp1.txt",ios::in);
+          ofstream output2("Fichiers/candidat.txt",ios::out|ios::trunc);
+
+          if(input2 && output2)
+          {
+           while( input2 >> cand )
+           {
+             output2 << cand;
+            }
+                input2.close();
+                output2.close();
+            dg.Message_Validation('m');
+          }
+          else{
+             dg.Message_Erreur_flux();
+          }
+    }
+
+}
+
+
+
+
+
+
