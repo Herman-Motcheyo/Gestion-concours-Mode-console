@@ -29,6 +29,10 @@ void Design::Entrer(char type)
         cout << " Vous pouvez modifier le MAtiere \n" ;
          cout << " Entrer  l'ancien code de matiere \t" ;
     }
+    else if(type == 'f')
+    {
+      cout<<" :::: NCNI         NOM           PRENOM         AGE       " <<endl;
+    }
 }
 
 void Design::Menu_Entrer(string entite, char mode)
@@ -99,6 +103,9 @@ void Design::MenuModifier(string entite ,char mode)
              Entrer();
              cout << " L' AGE \t" ;
         }
+                else if(mode == 'x'){
+          cout << " ::::::   Svp veuillez renseigner un numero correct  ::::: \n";
+        }
     }else if(entite == "matiere"){
           if(mode == 'c'){
             Entrer();
@@ -152,9 +159,9 @@ void Design::MenuModifier(char mode){
                 cout <<"..........................................................."<<endl;
                 cout <<" Vous pouvez modifier :"<<endl;
                 cout <<" ----------------------"<<endl;
-                cout <<"  -> Le code"<<endl;
-                cout <<"  -> Le libelle"<<endl;
-                cout <<"  -> Le coefficient"<<endl;
+                cout <<"  :::::::::: Le code ::::::::::"<<endl;
+                cout <<"  :::::::::: Le libelle  ::::::::::"<<endl;
+                cout <<" :::::::::: Le coefficient ::::::::::"<<endl;
                   Entrer();;
                 cout <<" 1 pour le code ; ";
                 cout <<"2 pour le libelle ; ";
@@ -197,3 +204,29 @@ void Design::Message_Validation(char rep)
      cout << " ***** Modification Reussi avec Sucess !!!! ***** "<<endl;
   }
 }
+
+ void Design::afficherAdmis(string ncni,string nom, string prenom,int age)
+ {
+    cout<<" [ "<<ncni<<"   "<<nom << "   "<<prenom <<"   "<<age <<" ] "<<endl;
+ }
+
+ void Design::afficheStatistisque(double ad,double aj,double re)
+ {    Utilitaire u;
+      cout<<" [ Statistique ] ==>> Admis =  "<< ad << " % "<< endl;
+      cout<<" [ Statistique ] ==>> Ajourné =  "<< aj << " % "<< endl;
+      cout<<" [ Statistique ] ==>> Refusé =  "<< re << " % "<< endl;
+      cout<<" Nombres de Candidats ayant concouris  =  "<< u.nombre_elem_Fichier("Fichiers/candidat.txt")<< endl;
+
+ }
+
+ void Design::debut(){
+            cout<<"\n"<<endl;
+            cout<<"\t\t\t\t.----------------------------------------------."<<endl;
+            cout<<"\t\t\t\t|                                              |"<<endl;
+            cout<<"\t\t\t\t|          BIENVENUE DANS NOTRE PROGRAMME         |"<<endl;
+            cout<<"\t\t\t\t|           (WELCOME IN OUR PROGRAM)          |"<<endl;
+            cout<<"\t\t\t\t|                                              |"<<endl;
+            cout<<"\t\t\t\t.----------------------------------------------."<<endl;
+        }
+
+
