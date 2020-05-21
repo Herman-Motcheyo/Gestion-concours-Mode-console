@@ -48,11 +48,12 @@
 	<string>
 	<fstream>
 
-1589928073 source:/home/herman/Bureau/TP/main.cpp
+1590054694 source:/home/herman/Bureau/TP/main.cpp
 	<iostream>
 	"Candidat.h"
 	"Matiere.h"
 	"Evaluation.h"
+	"Utilitaire.h"
 
 1589915665 /home/herman/Bureau/TP/include/Candidat.h
 	<string>
@@ -61,52 +62,53 @@
 	"Evaluation.h"
 	<fstream>
 
-1589916098 /home/herman/Bureau/TP/include/Utilitaire.h
+1590050510 /home/herman/Bureau/TP/include/Utilitaire.h
 	"Candidat.h"
 	"Matiere.h"
 	"Design.h"
 	<string>
 
-1589915338 /home/herman/Bureau/TP/include/Design.h
+1590054458 /home/herman/Bureau/TP/include/Design.h
+	"Utilitaire.h"
 	<string>
 
-1589915913 /home/herman/Bureau/TP/include/Matiere.h
+1589984571 /home/herman/Bureau/TP/include/Matiere.h
 	"Utilitaire.h"
 	"Design.h"
 	"Evaluation.h"
 	<fstream>
 	<string>
 
-1589916574 /home/herman/Bureau/TP/include/Evaluation.h
+1589986972 /home/herman/Bureau/TP/include/Evaluation.h
 	<string>
 	"Utilitaire.h"
 	"Design.h"
 	"Evaluation.h"
 	<fstream>
 
-1589915308 source:/home/herman/Bureau/TP/src/Design.cpp
+1590054947 source:/home/herman/Bureau/TP/src/Design.cpp
 	"Design.h"
 	<iostream>
 
-1589917363 source:/home/herman/Bureau/TP/src/Evaluation.cpp
+1589986909 source:/home/herman/Bureau/TP/src/Evaluation.cpp
 	"Evaluation.h"
 	<string>
 	<iostream>
 
-1589927856 source:/home/herman/Bureau/TP/src/Matiere.cpp
+1589987714 source:/home/herman/Bureau/TP/src/Matiere.cpp
 	"Matiere.h"
 	<string>
 	<iostream>
 	<fstream>
 
-1589916002 source:/home/herman/Bureau/TP/src/Utilitaire.cpp
+1590050677 source:/home/herman/Bureau/TP/src/Utilitaire.cpp
 	"Utilitaire.h"
 	<string>
 	<iostream>
 	<string>
 	<fstream>
 
-1589923905 source:/home/herman/Bureau/TP/src/Candidat.cpp
+1589981692 source:/home/herman/Bureau/TP/src/Candidat.cpp
 	"Candidat.h"
 	<string>
 	<iostream>

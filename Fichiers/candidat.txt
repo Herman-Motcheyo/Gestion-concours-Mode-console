@@ -1,4 +1,5 @@
-E65 ;HERMAN ;toto ; 20
-E677 ;dimtri ;mende ; 20
-E124 ;laurette ;nadou ; 12
-18T2640 ;félix;gabrièl ;23 ; 244
+1 ;tete ;mbr ; 11
+25 ;MOTCHEYO ;HERAMN ; 21
+24 ;TOTO ;rodry ; 100
+12 ;jaures ;tembe ; 25
+9 ;piere ;piere ; 8500
