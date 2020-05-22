@@ -114,3 +114,70 @@
 	<iostream>
 	<fstream>
 
+1590154279 source:c:\users\tcheneghon herman\desktop\tpwindow\main.cpp
+	<iostream>
+	<string>
+	"Candidat.h"
+	"Matiere.h"
+	"Evaluation.h"
+	"Utilitaire.h"
+
+1589919265 c:\users\tcheneghon herman\desktop\tpwindow\include\candidat.h
+	<string>
+	"Utilitaire.h"
+	"Design.h"
+	"Evaluation.h"
+	<fstream>
+
+1590098291 c:\users\tcheneghon herman\desktop\tpwindow\include\utilitaire.h
+	"Candidat.h"
+	"Matiere.h"
+	"Design.h"
+	<string>
+
+1589988171 c:\users\tcheneghon herman\desktop\tpwindow\include\matiere.h
+	"Utilitaire.h"
+	"Design.h"
+	"Evaluation.h"
+	<fstream>
+	<string>
+
+1590110928 c:\users\tcheneghon herman\desktop\tpwindow\include\design.h
+	"Utilitaire.h"
+	<string>
+
+1589990572 c:\users\tcheneghon herman\desktop\tpwindow\include\evaluation.h
+	<string>
+	"Utilitaire.h"
+	"Design.h"
+	"Evaluation.h"
+	<fstream>
+
+1589985292 source:c:\users\tcheneghon herman\desktop\tpwindow\src\candidat.cpp
+	"Candidat.h"
+	<string>
+	<iostream>
+	<fstream>
+
+1590152230 source:c:\users\tcheneghon herman\desktop\tpwindow\src\design.cpp
+	"Design.h"
+	<iostream>
+
+1589990509 source:c:\users\tcheneghon herman\desktop\tpwindow\src\evaluation.cpp
+	"Evaluation.h"
+	<string>
+	<iostream>
+
+1589991314 source:c:\users\tcheneghon herman\desktop\tpwindow\src\matiere.cpp
+	"Matiere.h"
+	<string>
+	<iostream>
+	<fstream>
+
+1590110949 source:c:\users\tcheneghon herman\desktop\tpwindow\src\utilitaire.cpp
+	"Utilitaire.h"
+	<string>
+	<iostream>
+	<string>
+	<fstream>
+

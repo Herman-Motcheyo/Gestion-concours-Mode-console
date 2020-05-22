@@ -1,2 +1,4 @@
-24 ;TOTO ;rodry
-12 ;jaures ;tembe
+aa ;talla ;piere
+ii ;kamga ;steve
+kk ;ngono ;ange
+tt ;defo ;rolan

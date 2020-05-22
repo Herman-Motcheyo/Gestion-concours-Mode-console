@@ -13,7 +13,7 @@ Design::~Design()
 }
 void Design::Entrer()
 {
-    cout << "Entrer " ;
+    cout << "                    Entrer " ;
 }
 
 void Design::Entrer(char type)
@@ -31,7 +31,26 @@ void Design::Entrer(char type)
     }
     else if(type == 'f')
     {
-      cout<<" :::: NCNI         NOM           PRENOM         AGE       " <<endl;
+      cout<<"\t\t\t\t|       NCNI          NOM            PRENOM           AGE              " <<endl;
+    }else if(type == 'r'){
+            cout << " \n\n              [   :: VEUILLEZ  FAIRE UN CHOIX SVP ::  ] \t" ;
+    }
+    else if(type =='e'){
+        cerr << " \n             [   :: ERREUR DE SAISIR ::  ] \t";
+    }
+    else if(type == 't'){
+         cout <<"              [   ::Voulez-vous continuer à ajouter des entités????(o/n)  ::] \t";
+    }
+        else if(type == 'j'){
+         cout <<"              [   ::VEUILLEZ RENSEIGNER UN NUMERO CORRECT  ::] \t";
+    }
+        else if(type == 'v')
+    {
+      cout<<"\n\t\t\t\t       NCNI      MOYENNE      DECISION                 \n " <<endl;
+    }else if(type == '5')
+    {
+            cout<<"\n\t\t\t\t         5 GENERATTION DU FICHIER ADMIS ET AFFICHAGE DES ADMIS DU CONCOURS                          |\n\n"<<endl;
+
     }
 }
 
@@ -156,12 +175,12 @@ void Design::MenuModifier(char mode){
                 cout <<"....................................................................."<<endl;
 
             }else if(mode=='m'){ // m pour matiere
-                cout <<"..........................................................."<<endl;
-                cout <<" Vous pouvez modifier :"<<endl;
-                cout <<" ----------------------"<<endl;
-                cout <<"  :::::::::: Le code ::::::::::"<<endl;
-                cout <<"  :::::::::: Le libelle  ::::::::::"<<endl;
-                cout <<" :::::::::: Le coefficient ::::::::::"<<endl;
+                cout <<"              ..........................................................."<<endl;
+                cout <<"              Vous pouvez modifier :"<<endl;
+                cout <<"             ----------------------"<<endl;
+                cout <<"       :::::::::: Le code ::::::::::"<<endl;
+                cout <<"       :::::::::: Le libelle  ::::::::::"<<endl;
+                cout <<"       :::::::::: Le coefficient ::::::::::"<<endl;
                   Entrer();;
                 cout <<" 1 pour le code ; ";
                 cout <<"2 pour le libelle ; ";
@@ -179,54 +198,124 @@ void Design::Message_Erreur_flux()
 void Design::Message_Erreur(char type)
 {
           if(type=='c'){
-                cout << "  ***** IMPOSSIBLE D'ENREGISTRER LE CANDIDAT !!!! ***** "<<endl;
-                cout << "  ***** SON IDENTIFIANT EXISTE DEJA DANS LA BASE DE DONNEE] ***** "<<endl;
-                cout << " { Mais vous pouvez modifier ou supprimer l'enregistrement existant }"<<endl;
+                cout << "          ***** IMPOSSIBLE D'ENREGISTRER LE CANDIDAT !!!! ***** "<<endl;
+                cout << "          ***** SON IDENTIFIANT EXISTE DEJA DANS LA BASE DE DONNEE] ***** "<<endl;
+                cout << "           Mais vous pouvez modifier ou supprimer l'enregistrement existant }"<<endl;
             }else if(type=='m'){
-                cout << " ***** IMPOSSIBLE D'ENREGISTRER LA MATIERE !!!! ***** "<<endl;
-                cout << " ***** SON IDENTIFIANT EXISTE DEJA DANS LA BASE DE DONNEE] ***** "<<endl;
-                cout << " { Mais vous pouvez modifier ou supprimer l'enregistrement existant }"<<endl;
+                cout << "          ***** IMPOSSIBLE D'ENREGISTRER LA MATIERE !!!! ***** "<<endl;
+                cout << "          ***** SON IDENTIFIANT EXISTE DEJA DANS LA BASE DE DONNEE] ***** "<<endl;
+                cout << "            Mais vous pouvez modifier ou supprimer l'enregistrement existant }"<<endl;
             }else if(type=='e'){
-                cout << " ***  IMPOSSIBLE D'ENREGISTRER L' EVALUATION !!!!**"<<endl;
-                cout << "Soit le code n'existe pas soit  votre n'existe pas Merci !!! "<<endl;
+                cout << "           ***  IMPOSSIBLE D'ENREGISTRER L' EVALUATION !!!!**"<<endl;
+                cout << "          Soit le code n'existe pas soit  votre n'existe pas Merci !!! "<<endl;
             }else if(type == 'w'){
                                   cout << " La note doit etre strictement positive !!! ";
             }else if(type == 'd')
             {
-                 cout << "Le NCNI renseign�  n'existe pas Merci !!! "<<endl;
+                 cout << "           Le NCNI renseign�  n'existe pas Merci !!! "<<endl;
             }
 }
 void Design::Message_Validation(char rep)
 {
   if(rep=='c'){
-      cout << " ***** Enregistrement Reussi avec Sucess !!!! ***** "<<endl;
+      cout << "                  \n***** Enregistrement Reussi avec Sucess !!!! ***** "<<endl;
   }else if (rep == 'm'){
-     cout << " ***** Modification Reussi avec Sucess !!!! ***** "<<endl;
+     cout << "                   \n***** Modification Reussi avec Sucess !!!! ***** "<<endl;
+  }
+  else if (rep == 's'){
+     cout << "                   \n***** Suppression Reussi avec Sucess !!!! ***** "<<endl;
   }
 }
 
  void Design::afficherAdmis(string ncni,string nom, string prenom,int age)
- {
-    cout<<" [ "<<ncni<<"   "<<nom << "   "<<prenom <<"   "<<age <<" ] "<<endl;
+ {       cout<<"\n\t\t\t\t      "<<ncni<<"          "<<nom <<   "          "   <<prenom << "             "<<age << "        "<<endl;
+
+ }
+  void Design::afficherAdmis(string ncni,string nom, string prenom)
+ {       cout<<"\n\t\t\t\t      "<<ncni<<"          "<<nom <<   "          "   <<prenom << "                  "<<endl;
+
+ }
+  void Design::afficheResultat(string ncni,double moyenne, string decision)
+ {           cout<<"\t\t\t\t      "<<ncni<<"      "<<moyenne <<   "      "   <<decision<< "            "<<endl;
+
  }
 
  void Design::afficheStatistisque(double ad,double aj,double re)
  {    Utilitaire u;
-      cout<<" [ Statistique ] ==>> Admis =  "<< ad << " % "<< endl;
-      cout<<" [ Statistique ] ==>> Ajourné =  "<< aj << " % "<< endl;
-      cout<<" [ Statistique ] ==>> Refusé =  "<< re << " % "<< endl;
-      cout<<" Nombres de Candidats ayant concouris  =  "<< u.nombre_elem_Fichier("Fichiers/candidat.txt")<< endl;
-
+      cout<<"\n\n";
+      cout<<"                            [ Statistique ]    ==>>  Admis =  "<< ad << " % "<< endl;
+      cout<<"                            [ Statistique ]    ==>>  Ajourné =  "<< aj << " % "<< endl;
+      cout<<"                            [ Statistique ]    ==>>  Refusé =  "<< re << " % "<< endl;
+      cout<<"\n";
+      cout<<"                            Nombres de Candidats ayant concouris  =  "<< u.nombre_elem_Fichier("Fichiers/candidat.txt")<< endl;
+      cout<<"                            -----------------------------------------";
  }
 
  void Design::debut(){
             cout<<"\n"<<endl;
-            cout<<"\t\t\t\t.----------------------------------------------."<<endl;
-            cout<<"\t\t\t\t|                                              |"<<endl;
-            cout<<"\t\t\t\t|          BIENVENUE DANS NOTRE PROGRAMME         |"<<endl;
-            cout<<"\t\t\t\t|           (WELCOME IN OUR PROGRAM)          |"<<endl;
-            cout<<"\t\t\t\t|                                              |"<<endl;
-            cout<<"\t\t\t\t.----------------------------------------------."<<endl;
+            cout<<"\t\t\t\t\t\t\t.----------------------------------------------."<<endl;
+            cout<<"\t\t\t\t\t\t\t|                                              |"<<endl;
+            cout<<"\t\t\t\t\t\t\t|          BIENVENUE DANS NOTRE PROGRAMME         |"<<endl;
+            cout<<"\t\t\t\t\t\t\t|           (WELCOME IN OUR PROGRAM)          |"<<endl;
+            cout<<"\t\t\t\t\t\t\t|                                              |"<<endl;
+            cout<<"\t\t\t\t\t\t\t.----------------------------------------------."<<endl;
         }
+void Design::menuPrincipal()
+{
+            cout<<"\n"<<endl;
+            cout<<"\t\t\t\t-----------------------------------------------------------------------------------------------------."<<endl;
+            cout<<"\t\t\t\t|                                                                                                    |"<<endl;
+            cout<<"\t\t\t\t|                                        EVALUATION DU PROGRAMME                                     |"<<endl;
+            cout<<"\t\t\t\t|                                    MERCI DE SUIVRE LES INSTRUCTIONS                                |"<<endl;
+            cout<<"\t\t\t\t|                                                                                                    |"<<endl;
+            cout<<"\t\t\t\t|.---------------------------------------------------------------------------------------------------."<<endl;
+              cout<<"\n"<<endl;
+              cout<<"\n"<<endl;
 
+            cout<<"\t\t\t\t|         1 AFFICHER LES STRUCTURES DE  DONNEES UTILISEES POUR LA GESTION DU CONCOURS                |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         2 AFFICHER LES METHODES UTILISEES POUR REMPPLIR LES ENTITES LA GESTION                     |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         3 AJOUTER MODIFIER SUPPRIMER DES ENTITES                                                   |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         4 GENERATTION DU FICHIER RESULTAT ET AFFICHAGE DES RESULTATS DU CONCOURS                   |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         5 GENERATTION DU FICHIER ADMIS ET AFFICHAGE DES ADMIS DU CONCOURS                          |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         6 AFFICHER LES CANDIDATS PRESENT DANS LA LISTE D'ATTENTE                                   |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         7 AFFICHER LES STATISTIQUES RELATIF AU CONCOURS                                            |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         8 SUPPRIMER LES CANDIDATS DE LA LISTE D'ATTENTE  ET AFFICHER LES ADMIS DEFINITIFS          |"<<endl;
+             cout<<"\n"<<endl;
+            cout<<"\t\t\t\t|         9 AFFICHER LES ADMIS PAR ORDRE DE MERITE                                                   |"<<endl;
+
+}
+
+void Design::actionMenu( char mode)
+{
+    if(mode=='1'){
+             cout<<"\t\t\t\t|         1                  AJOUTER                                                                |"<<endl;
+            cout<<"\t\t\t\t|         2                  MODIFIER                                                                |"<<endl;
+            cout<<"\t\t\t\t|         3                  SUPPRIMER                                                               |"<<endl;
+
+    }
+        else if(mode=='2'){
+             cout<<"\t\t\t\t|         1                  AJOUTER  CANDIDAT                                                      |"<<endl;
+            cout<<"\t\t\t\t|         2                   AJOUTER  MATIERE                                                       |"<<endl;
+            cout<<"\t\t\t\t|         3                   AJOUTER  EVALUATION                                                    |"<<endl;
+
+    }
+        else if(mode=='3'){
+             cout<<"\t\t\t\t|         1                  MODIFIER  CANDIDAT                                                     |"<<endl;
+            cout<<"\t\t\t\t|         2                   MODIFIER  MATIERE                                                      |"<<endl;
+
+    }
+        else if(mode=='4'){
+             cout<<"\t\t\t\t|         1                  SUPPRIMER  CANDIDAT                                                    |"<<endl;
+            cout<<"\t\t\t\t|         2                   SUPPRIMER  MATIERE                                                     |"<<endl;
+            cout<<"\t\t\t\t|         3                   SUPPRIMER  EVALUATION                                                  |"<<endl;
+
+    }
+}
 

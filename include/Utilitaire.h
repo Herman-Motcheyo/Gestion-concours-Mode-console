@@ -21,6 +21,7 @@ class Utilitaire
         string decision(double[],double ,int);
         void admis();
         void afficherListeAdmis();
+        void afficherResultat();
         void attente();
         void afficherListeAttente();
         double statistique(string);

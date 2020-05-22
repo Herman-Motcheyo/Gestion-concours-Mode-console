@@ -168,7 +168,7 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
              }
 
               moyen = moyenne(notes,coef,n);
-              cout<< moyen <<endl;
+              //cout<< moyen <<endl;
               output << c.GetNCNI()  <<" ;" << moyen<<" ;"<<decision(notes,moyen,n)  <<endl;
 
 } input.close();
@@ -179,7 +179,29 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
 
      }
   }
+   /**  cette methode permet d'afficher les resultats du concours**/
 
+   void Utilitaire::afficherResultat()
+   {   Design dg;
+       string decision,cni;
+       double moyenne;
+      ifstream input("Fichiers/resultat.txt",ios::in);
+
+      if(input){
+            dg.Entrer('v');
+           while(input  >> cni){
+            input.get(); input.get();
+            input >> moyenne;
+            input.get(); input.get();
+            input >> decision;
+            dg.afficheResultat(cni,moyenne,decision);
+           }
+        input.close();
+      }
+      else{
+        dg.Message_Erreur_flux();
+      }
+   }
       /** cette methode permet de decider de la situation d'un candidat(admi,ajourné,echec)  **/
  string Utilitaire::decision(double notes[],double moyenne ,int nb_el)
  {
@@ -332,7 +354,7 @@ string nom,prenom,ncni;
            input.get();
            input >> prenom;
 
-      dg.afficherAdmis(ncni,nom,prenom,12);
+      dg.afficherAdmis(ncni,nom,prenom);
        }
   input.close();
   }

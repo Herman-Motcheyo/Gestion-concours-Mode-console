@@ -19,9 +19,13 @@ class Design
         void Message_Erreur(char );
         void Message_Validation(char);
         void afficherAdmis(string,string,string,int);
+         void afficherAdmis(string,string,string);
         void afficheStatistisque(double,double,double);
+        void afficheResultat(string,double,string);
         void debut();
         void fin();
+        void menuPrincipal();
+        void actionMenu(char);
 
     protected:
 
