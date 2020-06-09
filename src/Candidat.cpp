@@ -253,6 +253,26 @@ void Candidat::modifierCandidat()
 
 }
 
+void Candidat::afficherCandidat()
+{    Design d;
+    ifstream fcandidat("Fichiers/candidat.txt",ios::in);
+    Candidat c;
+    if(fcandidat)
+    {
+        while (fcandidat >> c )
+        {
+
+            d.afficherEntite('c',c.GetNCNI(),c.GetNOM() , c.GetAGE(),c.GetPRENOM() );
+
+        }
+        fcandidat.close();
+    }
+    else
+    {
+        d.Message_Erreur_flux();
+    }
+}
+
 
 
 

@@ -21,6 +21,7 @@ class Evaluation
         void modifierEvaluationMatiere( string,string );
         void supprimerEvaluationCandidat( string);
         void modifierEvaluationCandidat( string,string);
+        void afficherEvaluation();
 
          friend istream & operator >> (istream & flux, Evaluation &eval);
          friend ostream & operator << (ostream &flux, Evaluation &eval);

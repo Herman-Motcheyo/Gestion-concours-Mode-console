@@ -221,3 +221,23 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
 
           }
  }
+
+ void Evaluation::afficherEvaluation()
+{    Design d;
+    ifstream feval("Fichiers/evaluation.txt",ios::in);
+    Evaluation e;
+    if(feval)
+    {
+        while (feval >> e )
+        {
+
+            d.afficherEntite('e',e.GetNCNI(),e.Getcode() ,e.Getnote(),"x");
+        }
+        feval.close();
+    }
+    else
+    {
+        d.Message_Erreur_flux();
+    }
+}
+

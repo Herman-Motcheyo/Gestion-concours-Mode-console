@@ -25,6 +25,7 @@ class Candidat
         void ajouterCandidat();
         void supprimer_Candidat(string);
         void modifierCandidat();
+        void afficherCandidat();
 
         string GetNCNI() { return NCNI; }
         void SetNCNI(string val) { NCNI = val; }

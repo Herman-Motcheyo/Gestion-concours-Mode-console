@@ -18,14 +18,15 @@ class Design
         void Message_Erreur_flux();
         void Message_Erreur(char );
         void Message_Validation(char);
-        void afficherAdmis(string,string,string,int);
-         void afficherAdmis(string,string,string);
+        void afficherAdmis(string,string,string,double moyn=0);
         void afficheStatistisque(double,double,double);
         void afficheResultat(string,double,string);
         void debut();
         void fin();
         void menuPrincipal();
         void actionMenu(char);
+        void afficherEntite(char,string ,string,int,string);
+        void fintp();
 
     protected:
 

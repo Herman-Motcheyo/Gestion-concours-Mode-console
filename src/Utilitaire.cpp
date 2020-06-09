@@ -1,6 +1,4 @@
 #include "Utilitaire.h"
-
-#include <string>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -71,7 +69,7 @@ int Utilitaire::coef_Matiere(string code)
 }
 
                   /** cette methode permet de calculer le nombre d'element du fichier **/
-int Utilitaire::nombre_elem_Fichier(char * fichier)
+int Utilitaire::nombre_elem_Fichier(string fichier)
 {
 
  string line;
@@ -216,9 +214,8 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
          }
       }
     }
-    else{
      return "refuse";
-    }
+
  }
 
       /** cette methode permet de produire le fichier admis.txt contenat les informations relatives aux candidats admis**/
@@ -286,7 +283,7 @@ int age;
            input.get();
            input >>age;
 
-       dg.afficherAdmis(ncni,nom,prenom,age);
+       dg.afficherAdmis(ncni,nom,prenom);
        }
   input.close();
   }
@@ -294,6 +291,7 @@ int age;
    dg.Message_Erreur_flux();
   }
 }
+
 
    /** Fournir le fichier attente.txt pour les candidats ayant reussiir au concours donc l'age > 20 **/
 void Utilitaire::attente()
@@ -402,7 +400,7 @@ double Utilitaire::statistique(string deci)
     return stat;
 }
       /** permet d'afficher les statistiques relatifs au concours**/
- void  Utilitaire::afficheStatistique()
+ void  Utilitaire:: afficheStatistique()
  {
    Design d;
    double nbadmis=0,nbrefuse=0,nbajourne=0;
@@ -485,7 +483,7 @@ int age;
            input.get();input.get();
            input >>age;
 
-       dg.afficherAdmis(ncni,nom,prenom,age);
+       dg.afficherAdmis(ncni,nom,prenom);
        }
   input.close();
   }
@@ -493,3 +491,177 @@ int age;
    dg.Message_Erreur_flux();
   }
  }
+
+void Utilitaire::afficheMerite()
+{   Design d;
+    int i =0,j=0;
+
+    string nci2,decision;
+    int Nbre =nombre_elem_Fichier("Fichiers/admis.txt");
+    int Nbre2 = nombre_elem_Fichier("Fichiers/resultat.txt");
+
+
+    ifstream input("Fichiers/admis.txt");
+    ifstream input2("Fichiers/resultat.txt");
+         struct Participant
+        {
+           string nci;
+           string nom;
+           string prenom;
+           int age;
+           double moyen;
+        };
+       struct Dataresultat
+        {
+           string nci2;
+           string decision;
+          double moyen;
+         };
+
+if(input && input2)
+    {
+      Participant p[Nbre],tmp;
+      Dataresultat r[Nbre2];
+
+         while(input >> p[i].nci && i != Nbre)
+         {  //cout << i<<endl;
+             input.get();input.get();
+             input >>p[i].nom;
+           //  cout << p[i].nom<<endl;
+             input.get();input.get();
+             input >>p[i].prenom;
+             input.get();input.get();
+             input >>p[i].age;
+            //   cout << p[i].prenom<<endl;
+
+             ++i;
+         }
+
+          while(input2 >> r[j].nci2 && j != Nbre2)
+         { // cout << j<<endl;
+              //cout << r[j].nci2<<endl;
+             input2.get();input2.get();
+             input2 >>r[j].moyen;
+            // cout << r[j].moyen<<endl;
+             input2.get();input2.get();
+             input2 >>r[j].decision;
+             ++j;
+         }
+
+        for(int k =0;k< Nbre2;k++)
+         {
+           for(int x=0;x<Nbre ;x++)
+           {
+             if( p[x].nci ==  r[k].nci2)
+             {
+                p[x].moyen = r[k].moyen;
+
+             }
+           }
+         }
+
+         for(i=1;i<Nbre;i++)
+         {
+           j=i-1;
+           while(j>=0 && p[j].moyen<=p[j+1].moyen)
+           {
+             tmp=p[j];
+             p[j]=p[j+1];
+             p[j+1]=tmp;
+             j--;
+           }
+         }
+         cout<<"                                MOYENNES"<<endl;
+         for(auto element:p)
+            {
+           //   cout<<element.nom<<" "<<element.prenom<<" "<<element.moyen<<element.nci<<endl;
+              cout<<"                                "<<element.moyen;
+                d.afficherAdmis(element.nci,element.nom,element.prenom);
+            }
+    }else
+    {
+        d.Message_Erreur_flux();
+    }
+}
+void Utilitaire::dataStructure()
+{
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t                     [   :: STRUCTURES DE DONNEES POUR LA GESTION DU CONCOURS   ::] "<<endl;
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+
+         cout <<"\t\t\t\t  POUR LA GESTION DU CONCOURS  ,ON A      \n"<<endl;
+         cout <<"\t\t\t\t  Une classe Candidat.hpp possedant les attributs d'un candidat  et les prototypes des methodes"<<endl;
+         cout <<"\t\t\t\t          pour traiter les Candidats telque ''ajouterCandidat()''  ''supprimer_Candidat()'' ''modifierCandidat()'' "<<endl;
+         cout <<"\t\t\t\t          et la surcharge du flux de lecture et d ecriture '' << >> '' ensuite un fichier ''Candidat.cpp''"<<endl;
+         cout <<"\t\t\t\t          pour l'implementation des methodes citées plus haut \n"<<endl;
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t  Une classe Matiere.hpp possedant les attributs d'une matiere  et les prototypes des methodes"<<endl;
+         cout <<"\t\t\t\t          pour traiter les Matiere telque ''ajouterMatiere()''  ''supprimerMatiere()'' ''modifierCandidat()'' "<<endl;
+         cout <<"\t\t\t\t          et la surcharge du flux de lecture et d ecriture '' << >> '' ensuite un fichier ''Matiere.cpp''"<<endl;
+         cout <<"\t\t\t\t          pour l'implementation des methodes citées plus haut \n"<<endl;
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t  Une classe Evaluation.hpp possedant les attributs d'une evaluation  et les prototypes des methodes"<<endl;
+         cout <<"\t\t\t\t          pour traiter les Evaluations telque ''ajouterEvaluation'' ,supprimer et modifier "<<endl;
+         cout <<"\t\t\t\t          et la surcharge du flux de lecture et d ecriture '' << >> '' ensuite un fichier ''Evaluation.cpp''"<<endl;
+         cout <<"\t\t\t\t          pour l'implementation des methodes citées plus haut \n"<<endl;
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t  Une classe Utilitaire.hpp  ne possedant pas d'attributs .Elle contient les prototypes des methodes"<<endl;
+         cout <<"\t\t\t\t          pour gerer les resultats du concours. Toutes les autres methodes sont à l'interieur "<<endl;
+         cout <<"\t\t\t\t          ensuite un fichier ''Utilitaire.cpp'' pour l' implementation des methodes \n"<<endl;
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t  Une classe Design.hpp  ne possedant pas d'attributs .Elle contient les prototypes des methodes"<<endl;
+         cout <<"\t\t\t\t          pour gerer l ' affichage des donnees du concours.Ensuite un fichier ''Design.cpp'' pour"<<endl;
+         cout <<"\t\t\t\t          l' implementation des methodes cet fichier ne contient que des 'cout' \n"<<endl;
+
+
+         cout <<"\t\t\t\t                            --------------------------------------------------      "<<endl;
+         cout <<"\t\t\t\t  Le dossier 'Fichiers' contient les differents fichiers pour  la gestion du concours  "<<endl;
+         cout <<"\t\t\t\t          Entre autres admis.txt , attente.txt ,candidat.txt ,matiere.txt ,resultat.txt , evaluation.txt \n"<<endl;
+}
+void Utilitaire::vueSurNCI(){
+  Design d;
+    ifstream fcandidat("Fichiers/candidat.txt",ios::in);
+    Candidat c;
+    if(fcandidat)
+    {   cout << " Les NCNI existants deja dans  le fichiers sont: "<<endl;
+        cout << "[";
+        while (fcandidat >> c )
+        {
+
+         cout << c.GetNCNI()<<" | ";
+
+          }
+           cout << "]"<<endl;
+        fcandidat.close();
+    }
+    else
+    {
+        d.Message_Erreur_flux();
+    }
+
+}
+void Utilitaire::vueSurCode(){
+   Design d;
+    ifstream fmatiere("Fichiers/matiere.txt",ios::in);
+    Matiere m;
+    if(fmatiere)
+    {   cout << " Les Codes existants deja dans  le fichiers sont: "<<endl;
+        cout << "[";
+        while (fmatiere >> m )
+        {
+
+         cout <<m.Getcode()<<" | ";
+        }
+         cout << "]"<<endl;
+        fmatiere.close();
+    }else
+    {
+        d.Message_Erreur_flux();
+    }
+}

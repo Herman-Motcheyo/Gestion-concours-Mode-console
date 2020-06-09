@@ -194,3 +194,21 @@ void Matiere::modifierMatiere()
     }
 
 }
+void Matiere::afficherMatiere()
+{    Design d;
+    ifstream fmatiere("Fichiers/matiere.txt",ios::in);
+    Matiere m;
+    if(fmatiere)
+    {
+        while (fmatiere >> m )
+        {
+
+            d.afficherEntite('m',m.Getcode(),m.Getlibelle() ,m.Getcoefficient(),"x");
+        }
+        fmatiere.close();
+    }else
+    {
+        d.Message_Erreur_flux();
+    }
+}
+
