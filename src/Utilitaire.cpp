@@ -17,7 +17,7 @@ Utilitaire::~Utilitaire()
          /** cette methode verifie si un candidat existe deja **/
 bool Utilitaire::Existe_Candidat(string ncni)
 {
-    ifstream output("Fichiers/candidat.txt",ios::in);
+    ifstream output("candidat.txt",ios::in);
     Candidat cdt;
     Design dg;
     if(output){
@@ -39,7 +39,7 @@ bool Utilitaire::Existe_Candidat(string ncni)
 bool Utilitaire::Existe_Matiere( string newcode)
 {    Design dg;
      Matiere m;
-    ifstream output("Fichiers/matiere.txt",ios::in);
+    ifstream output("matiere.txt",ios::in);
 
     if(output){
 
@@ -58,7 +58,7 @@ bool Utilitaire::Existe_Matiere( string newcode)
 
 int Utilitaire::coef_Matiere(string code)
 {  Matiere m;
-   ifstream input("Fichiers/matiere.txt",ios::in);
+   ifstream input("matiere.txt",ios::in);
 
    while(input >> m){
        if(m.Getcode() == code ){
@@ -89,7 +89,7 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
    Utilitaire util;
    int i=0;
    double notes[nb_el];
-   ifstream input("Fichiers/evaluation.txt",ios::in);
+   ifstream input("evaluation.txt",ios::in);
     if(input){
 
       while (input >> e){
@@ -140,11 +140,11 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
       Candidat c;
       Matiere m;
 
-     int n = nombre_elem_Fichier("Fichiers/matiere.txt");
+     int n = nombre_elem_Fichier("matiere.txt");
      if(n != 0){
 
-         ifstream input("Fichiers/candidat.txt",ios::in);
-         ofstream output("Fichiers/resultat.txt",ios::out|ios::trunc);
+         ifstream input("candidat.txt",ios::in);
+         ofstream output("resultat.txt",ios::out|ios::trunc);
 
          double notes[n],moyen;
          int coef[n];
@@ -152,7 +152,7 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
 
           while(input  >> c ){
            int i=0;
-            ifstream input2("Fichiers/evaluation.txt",ios::in);
+            ifstream input2("evaluation.txt",ios::in);
              while(input2 >> e ){
               if(c.GetNCNI() == e.GetNCNI()){
 
@@ -183,7 +183,7 @@ double* Utilitaire::notes_candidat(string cni,int nb_el)
    {   Design dg;
        string decision,cni;
        double moyenne;
-      ifstream input("Fichiers/resultat.txt",ios::in);
+      ifstream input("resultat.txt",ios::in);
 
       if(input){
             dg.Entrer('v');
@@ -224,8 +224,8 @@ void Utilitaire::admis()
 Design d;
    string cni,decisionn;
    double moyen;
-   ifstream input("Fichiers/resultat.txt",ios::in);
-   ofstream output("Fichiers/admis.txt",ios::out|ios::trunc);
+   ifstream input("resultat.txt",ios::in);
+   ofstream output("admis.txt",ios::out|ios::trunc);
 
    if(input && output){
          while(input >> cni){
@@ -236,7 +236,7 @@ Design d;
            input.get();
            input >> decisionn;
            if(decisionn == "admis"){
-             ifstream input2("Fichiers/candidat.txt");
+             ifstream input2("candidat.txt");
              Candidat c;
              if(input2){
               bool trouver =true; /** permet de s'arreter lorsqu'on a vu la cni **/
@@ -268,7 +268,7 @@ Design dg;
 string nom,prenom,ncni;
 int age;
 
-  ifstream input("Fichiers/admis.txt",ios::out);
+  ifstream input("admis.txt",ios::out);
   if(input){
    dg.Entrer('f');
        while(input >> ncni ){
@@ -298,8 +298,8 @@ void Utilitaire::attente()
 { Design dg;
   string nom,prenom,ncni;
   int age;
-  ifstream input("Fichiers/admis.txt",ios::in);
-  ofstream output("Fichiers/attente.txt",ios::out|ios::trunc);
+  ifstream input("admis.txt",ios::in);
+  ofstream output("attente.txt",ios::out|ios::trunc);
   if(input &&output){
 
       while(input >> ncni ){
@@ -317,7 +317,7 @@ void Utilitaire::attente()
           if(age >= 20){
             Candidat c;
             bool trouver =true;
-            ifstream input2("Fichiers/candidat.txt",ios::in);
+            ifstream input2("candidat.txt",ios::in);
             while ((input2  >> c) && trouver){
              if(c.GetAGE() == age){
                 output << c.GetNCNI() <<" ;"<<c.GetNOM()<<" ;"<<c.GetPRENOM()<<endl;
@@ -341,7 +341,7 @@ Design dg;
 string nom,prenom,ncni;
 
 
-  ifstream input("Fichiers/attente.txt",ios::out);
+  ifstream input("attente.txt",ios::out);
   if(input){
    dg.Entrer('f');
        while(input >> ncni ){
@@ -374,8 +374,8 @@ double Utilitaire::statistique(string deci)
    string cni,decisionn;
    double moyen,stat;
    int compteur =0;
-  ifstream input("Fichiers/resultat.txt",ios::in);
-  int nb_candidat =nombre_elem_Fichier("Fichiers/candidat.txt");
+  ifstream input("resultat.txt",ios::in);
+  int nb_candidat =nombre_elem_Fichier("candidat.txt");
   if(input){
 
      while(input >> cni){
@@ -417,8 +417,8 @@ double Utilitaire::statistique(string deci)
     string nom,prenom,nci;
     int age;
     bool trouver =true;
-    ifstream input("Fichiers/admis.txt",ios::in);
-    ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+    ifstream input("admis.txt",ios::in);
+    ofstream output("tmp1.txt",ios::out|ios::trunc);
 
     if(input && output){
         while(input >>nci) {
@@ -446,8 +446,8 @@ double Utilitaire::statistique(string deci)
     }
 
     if(trouver){
-        ifstream input2("Fichiers/tmp1.txt",ios::in);
-        ofstream output2("Fichiers/admis.txt",ios::out|ios::trunc);
+        ifstream input2("tmp1.txt",ios::in);
+        ofstream output2("admis.txt",ios::out|ios::trunc);
         if(input2 && output2){
            while(input2 >>nci){
             input2.get();  input2.get();
@@ -472,7 +472,7 @@ double Utilitaire::statistique(string deci)
 string nom,prenom,ncni;
 int age;
 
-  ifstream input("Fichiers/admis.txt",ios::out);
+  ifstream input("admis.txt",ios::out);
   if(input){
    dg.Entrer('f');
        while(input >> ncni ){
@@ -497,12 +497,12 @@ void Utilitaire::afficheMerite()
     int i =0,j=0;
 
     string nci2,decision;
-    int Nbre =nombre_elem_Fichier("Fichiers/admis.txt");
-    int Nbre2 = nombre_elem_Fichier("Fichiers/resultat.txt");
+    int Nbre =nombre_elem_Fichier("admis.txt");
+    int Nbre2 = nombre_elem_Fichier("resultat.txt");
 
 
-    ifstream input("Fichiers/admis.txt");
-    ifstream input2("Fichiers/resultat.txt");
+    ifstream input("admis.txt");
+    ifstream input2("resultat.txt");
          struct Participant
         {
            string nci;
@@ -626,7 +626,7 @@ void Utilitaire::dataStructure()
 }
 void Utilitaire::vueSurNCI(){
   Design d;
-    ifstream fcandidat("Fichiers/candidat.txt",ios::in);
+    ifstream fcandidat("candidat.txt",ios::in);
     Candidat c;
     if(fcandidat)
     {   cout << " Les NCNI existants deja dans  le fichiers sont: "<<endl;
@@ -648,7 +648,7 @@ void Utilitaire::vueSurNCI(){
 }
 void Utilitaire::vueSurCode(){
    Design d;
-    ifstream fmatiere("Fichiers/matiere.txt",ios::in);
+    ifstream fmatiere("matiere.txt",ios::in);
     Matiere m;
     if(fmatiere)
     {   cout << " Les Codes existants deja dans  le fichiers sont: "<<endl;
@@ -664,4 +664,43 @@ void Utilitaire::vueSurCode(){
     {
         d.Message_Erreur_flux();
     }
+}
+
+int Utilitaire::testBug(string choix)
+{
+  if(choix.find("-")== string::npos)
+  {
+      try
+      {
+         int var = stoi(choix);
+         if(var >= 10){
+            return 0;
+         }else{
+             return var;
+          }
+      }catch(const std::exception& e)
+      {
+          return 0;
+      }
+  }else{
+       return 0;
+  }
+}
+ double Utilitaire::testBugNote(string choix)
+{
+  if(choix.find("-")== string::npos)
+  {
+      try
+      {
+         double var = stod(choix);
+         if(var < 0 || var > 20){
+            return var;
+         }
+      }catch(const std::exception& e)
+      {
+          return -1;
+      }
+  }else{
+       return -1;
+  }
 }

@@ -1,0 +1,10 @@
+INFO207 ;ProjetPE ;1
+INFO204 ;Programmationobjet ;5
+INFO201 ;ProgWeb ;6
+INFO202 ;FondementMath ;6
+INFO203 ;Modelisation ;4
+INFO205 ;Datastructure ;6
+INFO206 ;BaseDedonne ;3
+INFO208 ;ReseauetSysteme ;5
+INFO210 ;Optimisation ;2
+ENG206 ;Anglais ;2

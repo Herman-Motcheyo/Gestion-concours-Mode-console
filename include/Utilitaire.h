@@ -32,6 +32,8 @@ class Utilitaire
         void dataStructure();
         void vueSurNCI();
         void vueSurCode();
+        int  testBug(string);
+        double testBugNote(string);
 
 
     private:

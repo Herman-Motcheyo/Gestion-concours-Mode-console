@@ -1,9 +1,15 @@
+/*INFO204:POO
+Noms: TCHENEGHON MOTCHEYO HERMAN
+matricule: 18T2640
+Binome: MBE MBE MINDJANA LOIC HENRI*/
+
 #include <iostream>
 #include <string>
 #include "Candidat.h"
 #include "Matiere.h"
 #include "Evaluation.h"
 #include "Utilitaire.h"
+#include <cctype>
 
 
 using namespace std;
@@ -15,17 +21,24 @@ Candidat c;
 Matiere m;
 Evaluation e;
 Utilitaire u;
-int choix = 0;
+int choix =0;
 char rep;
+string bug;
 string nci,code;
 
 do
 {
+
 d.debut();
 d.menuPrincipal();
-d.Entrer('r');
-
-cin >>choix;
+do{
+  d.Entrer('r');
+   getline(cin,bug);
+    choix = u.testBug(bug);
+    if(choix==0){
+      cout<<"Veuillez faire un bon choix svp!";
+    }
+}while(choix==0);
 
  if(choix == 1)
  {
@@ -83,6 +96,8 @@ cin >>choix;
           }else if(choix== 3)
          {
             do{
+                u.vueSurNCI();
+                 u.vueSurCode();
               e.ajouterEvaluation();                   /* Ajout des evaluations*/
               d.Entrer('t');
               cin >>rep;
@@ -99,6 +114,7 @@ cin >>choix;
                      if( choix == 1)
                      {
                          do{
+                            u.vueSurNCI();
                             c.modifierCandidat();                  /* modifications des candidats*/
                             d.Entrer('z');
                             cin >>rep;
@@ -106,6 +122,7 @@ cin >>choix;
                      }else if(choix == 2)
                      {
                           do{
+                                u.vueSurCode();
                             m.modifierMatiere();                  /* modifications des matieres*/
                             d.Entrer('i');
                             cin >>rep;
@@ -145,7 +162,7 @@ cin >>choix;
                     }while (rep == 'o');
                } else if(choix == 3)
                {
-                    do{
+                    do{ u.vueSurNCI();
                         d.Menu_Entrer("evaluation", 'c');
                         cin >>code;
                         e.supprimerEvaluationCandidat(code);              /* suppression  de evaluation*/

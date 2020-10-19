@@ -33,7 +33,7 @@ ostream & operator <<(ostream &flux,Matiere &m)
 
 void Matiere::ajouterMatiere()
 {
- ofstream input("Fichiers/matiere.txt",ios::app|ios::out);//flux permettant d'ecrire dans le fichier
+ ofstream input("matiere.txt",ios::app|ios::out);//flux permettant d'ecrire dans le fichier
    Matiere mat;
     Utilitaire utile;
     Design dg;
@@ -50,9 +50,11 @@ void Matiere::ajouterMatiere()
     {
       dg.Menu_Entrer("matiere",'l');
        cin >>mat.libelle;
-       dg.Menu_Entrer("matiere",'f');
-       cin >>mat.coefficient;
-
+          dg.Menu_Entrer("matiere",'w');//pour le warning
+          do{
+               dg.Menu_Entrer("matiere",'f');
+               cin >>mat.coefficient;
+        }  while(mat.coefficient <=0);
 
        input  <<mat.code  <<" ;" <<mat.libelle <<" ;"  <<mat.coefficient  <<endl;
      dg.Message_Validation('c');
@@ -69,11 +71,14 @@ void Matiere::ajouterMatiere()
  void Matiere::supprimerMatiere(string CODE){
                 Matiere mati;
                 Evaluation e;
-                ifstream input("Fichiers/matiere.txt",ios::in);
-                ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+                Utilitaire u;
+                ifstream input("matiere.txt",ios::in);
+                ofstream output("tmp1.txt",ios::out|ios::trunc);
                 bool trouve=false;
                 //on recupere le ncni s'il existe
-                while( input >> mati ){
+                if(u.Existe_Matiere(CODE))
+                {
+                 while( input >> mati ){
                     if(mati.Getcode()==CODE){
                         trouve=true;
                        e.supprimerEvaluationMatiere(mati.Getcode());
@@ -85,22 +90,26 @@ void Matiere::ajouterMatiere()
                 output.close();
                 if(trouve){
                     //on effectue la recopie
-                    ifstream input("Fichiers/tmp1.txt",ios::in);
-                    ofstream output("Fichiers/matiere.txt",ios::out|ios::trunc);
+                    ifstream input("tmp1.txt",ios::in);
+                    ofstream output("matiere.txt",ios::out|ios::trunc);
                     while( input >> mati ){
                         output << mati;
                     }
                     input.close();
                     output.close();
                 }
+                }else{
+                  cout<<"Le code renseigne n existe pas dans le fichier donc on ne peut pas supprimer"<<endl;
+                }
+
         }
 
 
         /** cette methode permet de modifier une matiere**/
 void Matiere::modifierMatiere()
 {
-    ifstream input("Fichiers/matiere.txt",ios::in);
-    ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+    ifstream input("matiere.txt",ios::in);
+    ofstream output("tmp1.txt",ios::out|ios::trunc);
     Matiere m;
     Evaluation e;
     Design dg;
@@ -132,8 +141,15 @@ void Matiere::modifierMatiere()
                  {
                      dg.MenuModifier("matiere",'c');
                       cin >>new_code;
+
+                    if(utile.Existe_Matiere(new_code)){
+                        cout<<"ce nouveau code existe dans le fichier"<<endl;
+                      }
+                      else{
                       m.Setcode(new_code);
                       e.modifierEvaluationMatiere(ancien_code,new_code);
+                      }
+
                  }
                  else if(choix ==2)
                  {
@@ -175,8 +191,8 @@ void Matiere::modifierMatiere()
 
       /**  on permute le contenu des 2 fichiers **/
     if(trouver){
-          ifstream input2("Fichiers/tmp1.txt",ios::in);
-          ofstream output2("Fichiers/matiere.txt",ios::out|ios::trunc);
+          ifstream input2("tmp1.txt",ios::in);
+          ofstream output2("matiere.txt",ios::out|ios::trunc);
 
           if(input2 && output2)
           {
@@ -196,7 +212,7 @@ void Matiere::modifierMatiere()
 }
 void Matiere::afficherMatiere()
 {    Design d;
-    ifstream fmatiere("Fichiers/matiere.txt",ios::in);
+    ifstream fmatiere("matiere.txt",ios::in);
     Matiere m;
     if(fmatiere)
     {

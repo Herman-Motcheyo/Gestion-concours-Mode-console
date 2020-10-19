@@ -38,7 +38,7 @@ ostream & operator  <<(ostream &flux ,Candidat cdt)
 
 void Candidat::ajouterCandidat()
 {
-  ofstream input("Fichiers/candidat.txt",ios::app|ios::out);//flux permettant d'ecrire dans le fichier
+  ofstream input("candidat.txt",ios::app|ios::out);//flux permettant d'ecrire dans le fichier
     Candidat cdt;
     Utilitaire utile;
     Design dg;
@@ -58,10 +58,13 @@ void Candidat::ajouterCandidat()
        dg.Menu_Entrer("candidat",'p');
        cin >>cdt.PRENOM;
 
-
+        dg.Menu_Entrer("candidat",'w');
        do{
        dg.Menu_Entrer("candidat",'a');
          cin >>cdt.AGE;
+            if(cdt.AGE <10){
+                cout<<"l age minimal est de 10 ans Recommencer"<<endl;
+            }
        }while(cdt.AGE <10 );
 
 
@@ -94,7 +97,7 @@ void Candidat::ajouterCandidat()
                 Candidat cand;
                 Evaluation e;
 
-                ifstream input("Fichiers/candidat.txt",ios::in);
+                ifstream input("candidat.txt",ios::in);
                 ofstream output("tmp1.txt",ios::out|ios::trunc);
                 bool trouve=false;
                 //on recupere le ncni s'il existe
@@ -111,32 +114,12 @@ void Candidat::ajouterCandidat()
                 if(trouve){
                     //on effectue la recopie
                     ifstream input("tmp1.txt",ios::in);
-                    ofstream output("Fichiers/candidat.txt",ios::out|ios::trunc);
+                    ofstream output("candidat.txt",ios::out|ios::trunc);
                         while( input >> cand ){
                         output << cand;
                     }
 
-      /* while(getline(input,line)){
-                input >> cni;
 
-          input >> v;
-           input >> v;
-
-
-         input >> nom;
-           input >> v;
-            input >> v;
-
-
-         input >> prenom;
-         input >> v;
-          input >> v;
-           input >> v;
-
-        input >> age;
-
- output  <<cni <<" ;" <<nom <<" ;"  <<prenom <<" ; "  << age <<"\n";
-       }*/
                     input.close();
                     output.close();
                 }
@@ -147,8 +130,8 @@ void Candidat::ajouterCandidat()
 
 void Candidat::modifierCandidat()
 {
-    ifstream input("Fichiers/candidat.txt",ios::in);
-    ofstream output("Fichiers/tmp1.txt",ios::out|ios::trunc);
+    ifstream input("candidat.txt",ios::in);
+    ofstream output("tmp1.txt",ios::out|ios::trunc);
     Candidat cand;
     Evaluation e;
     Design dg;
@@ -180,19 +163,25 @@ void Candidat::modifierCandidat()
                  {
                      dg.MenuModifier("candidat",'c');
                       cin >>new_cni;
-                      cand.SetNCNI(new_cni);
-                      e.modifierEvaluationCandidat(ancien_nci,new_cni);
+
+                      if(utile.Existe_Candidat(new_cni)){
+                        cout<<"ce nouveau numero existe dans le fichier"<<endl;
+                      }else{
+                             cand.SetNCNI(new_cni);
+                       e.modifierEvaluationCandidat(ancien_nci,new_cni);
+                      }
+
                  }
                  else if(choix ==2)
                  {
                      dg.MenuModifier("candidat",'n');
-                      cin >>  nom;
+                     cin >>nom;
                       cand.SetNOM(nom);
                  }
                 else if(choix ==3)
                  {
                      dg.MenuModifier("candidat",'p');
-                      cin >>  prenom;
+                     cin >>prenom;
                       cand.SetPRENOM(prenom);
                  }
                 else if(choix ==4)
@@ -203,6 +192,9 @@ void Candidat::modifierCandidat()
                       dg.MenuModifier("candidat",'a');
                       cin >>  age;
                       cand.SetAGE(age);
+                      if(age <10){
+                        cout<<"l age minimal est de 10 ans Recommencer"<<endl;
+                      }
 
                       }while(age <10 );
 
@@ -233,8 +225,8 @@ void Candidat::modifierCandidat()
 
       /**  on permute le contenu des 2 fichiers **/
     if(trouver){
-          ifstream input2("Fichiers/tmp1.txt",ios::in);
-          ofstream output2("Fichiers/candidat.txt",ios::out|ios::trunc);
+          ifstream input2("tmp1.txt",ios::in);
+          ofstream output2("candidat.txt",ios::out|ios::trunc);
 
           if(input2 && output2)
           {
@@ -255,7 +247,7 @@ void Candidat::modifierCandidat()
 
 void Candidat::afficherCandidat()
 {    Design d;
-    ifstream fcandidat("Fichiers/candidat.txt",ios::in);
+    ifstream fcandidat("candidat.txt",ios::in);
     Candidat c;
     if(fcandidat)
     {

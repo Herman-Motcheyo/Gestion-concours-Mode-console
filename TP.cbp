@@ -34,20 +34,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Fichiers/admis.txt" />
-		<Unit filename="Fichiers/attente.txt" />
-		<Unit filename="Fichiers/candidat.txt" />
-		<Unit filename="Fichiers/evaluation.txt" />
-		<Unit filename="Fichiers/matiere.txt" />
-		<Unit filename="Fichiers/resultat.txt" />
-		<Unit filename="Fichiers/tmp1.txt" />
-		<Unit filename="Fichiers/tmp2.txt" />
+		<Unit filename="admis.txt" />
+		<Unit filename="attente.txt" />
+		<Unit filename="candidat.txt" />
+		<Unit filename="evaluation.txt" />
 		<Unit filename="include/Candidat.h" />
 		<Unit filename="include/Design.h" />
 		<Unit filename="include/Evaluation.h" />
 		<Unit filename="include/Matiere.h" />
 		<Unit filename="include/Utilitaire.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="matiere.txt" />
+		<Unit filename="resultat.txt" />
 		<Unit filename="src/Candidat.cpp" />
 		<Unit filename="src/Design.cpp" />
 		<Unit filename="src/Evaluation.cpp" />

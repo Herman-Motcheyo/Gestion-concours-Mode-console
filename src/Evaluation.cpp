@@ -27,10 +27,11 @@ Evaluation::~Evaluation()
  }
 
 void Evaluation::ajouterEvaluation(){
-  ofstream input("Fichiers/evaluation.txt",ios::app|ios::out);
+  ofstream input("evaluation.txt",ios::app|ios::out);
     Evaluation eva;
     Utilitaire utile;
     Design dg;
+    string NOTE;
 
   if(input){
             dg.Menu_Entrer("evaluation",'n');
@@ -43,10 +44,10 @@ void Evaluation::ajouterEvaluation(){
         if(utile.Existe_Matiere(eva.code))
         {     do{
                       dg.Menu_Entrer("evaluation",'t');
-                      dg.Message_Erreur('w');
-                    cin >>eva.note;
+                     dg.Message_Erreur('w');
+                       cin  >>eva.note;
 
-               }while(eva.note < 0 || eva.note > 20 );
+               }while( eva.note < 0 || eva.note > 20);
 
               input  << eva.NCNI  <<" ;" <<eva.code <<" ;"  <<eva.note  <<endl;
               dg.Message_Validation('c');
@@ -73,8 +74,8 @@ void Evaluation::ajouterEvaluation(){
 
 /** cette methode permet de supprrimer une evaluation à partir du numero de cni du candidat **/
 void Evaluation::supprimerEvaluationCandidat(string NCNI){
-                ifstream input("Fichiers/evaluation.txt",ios::in);
-                ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+                ifstream input("evaluation.txt",ios::in);
+                ofstream output("tmp2.txt",ios::out|ios::trunc);
                 Evaluation eval;
                 bool trouve=false;
                 while( input >> eval ){
@@ -88,8 +89,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
                 output.close();
                 //on effectue la recopie s'il ya existence de l'enregistrement
                 if(trouve){
-                    ifstream input("Fichiers/tmp2.txt",ios::in);
-                    ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                    ifstream input("tmp2.txt",ios::in);
+                    ofstream output("evaluation.txt",ios::out|ios::trunc);
                     while( input >> eval ){
                         output << eval;
                     }
@@ -100,8 +101,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
 
       /** cette methode permet de supprrimer une evaluation à partir du code la  matiere **/
         void Evaluation::supprimerEvaluationMatiere(string code){
-                ifstream input("Fichiers/evaluation.txt",ios::in);
-                ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+                ifstream input("evaluation.txt",ios::in);
+                ofstream output("tmp2.txt",ios::out|ios::trunc);
                 Evaluation eval;
                 bool trouve=false;
                 while( input >> eval ){
@@ -115,8 +116,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
                 output.close();
                 //on effectue la recopie s'il ya existence de l'enregistrement
                 if(trouve){
-                    ifstream input("Fichiers/tmp2.txt",ios::in);
-                    ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                    ifstream input("tmp2.txt",ios::in);
+                    ofstream output("evaluation.txt",ios::out|ios::trunc);
                     while( input >> eval ){
                         output << eval;
                     }
@@ -128,8 +129,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
         /** cette methode permet de modifier la cni d'un candidat ayant passé une evaluation **/
 
  void Evaluation::modifierEvaluationCandidat( string ancien_nci,string ncni){
-            ifstream input("Fichiers/evaluation.txt",ios::in);
-            ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+            ifstream input("evaluation.txt",ios::in);
+            ofstream output("tmp2.txt",ios::out|ios::trunc);
             Evaluation e;
             Design dg;
             bool trouver =false;
@@ -159,8 +160,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
 
             if(trouver){
 
-                ifstream input("Fichiers/tmp2.txt",ios::in);
-                ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                ifstream input("tmp2.txt",ios::in);
+                ofstream output("evaluation.txt",ios::out|ios::trunc);
 
                if(input && output){
                    while(input >> e ){
@@ -180,8 +181,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
         /** cette methode permet de modifier lE CODE d'une matiere pour un Candidat ayant passé une evaluation **/
 
  void Evaluation::modifierEvaluationMatiere( string ancien_code,string ncode){
-            ifstream input("Fichiers/evaluation.txt",ios::in);
-            ofstream output("Fichiers/tmp2.txt",ios::out|ios::trunc);
+            ifstream input("evaluation.txt",ios::in);
+            ofstream output("tmp2.txt",ios::out|ios::trunc);
             Evaluation e;
             Design dg;
             bool trouver =false;
@@ -204,8 +205,8 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
 
             if(trouver){
 
-                ifstream input("Fichiers/tmp2.txt",ios::in);
-                ofstream output("Fichiers/evaluation.txt",ios::out|ios::trunc);
+                ifstream input("tmp2.txt",ios::in);
+                ofstream output("evaluation.txt",ios::out|ios::trunc);
 
                if(input && output){
                    while(input >> e ){
@@ -224,7 +225,7 @@ void Evaluation::supprimerEvaluationCandidat(string NCNI){
 
  void Evaluation::afficherEvaluation()
 {    Design d;
-    ifstream feval("Fichiers/evaluation.txt",ios::in);
+    ifstream feval("evaluation.txt",ios::in);
     Evaluation e;
     if(feval)
     {
